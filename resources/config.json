@@ -1,0 +1,7 @@
+{
+    "port": 8081,
+    "auth": {
+        "publicKey": "./resources/keys/public_key.pub",
+        "privateKey": "./resources/keys/private_key"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "port": 9999,
+    "auth": {
+        "publicKey": "PublicKeyPath",
+        "privateKey": "PrivateKeyPath"
+    }
+}
