@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"time"
 
+	"authService/model"
+
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/pkg/errors"
-	"github.com/xeenhl/authService/model"
 )
 
 type Tokenazer interface {

@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/xeenhl/authService/model"
+	"authService/model"
 )
 
 type TestKeyLoader struct{}

@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/xeenhl/authService/config"
+	"authService/config"
 )
 
 type PrivateKeyLoader interface {

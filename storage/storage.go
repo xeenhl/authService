@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"github.com/xeenhl/authService/model"
+	"authService/model"
 )
 
 type Store interface {

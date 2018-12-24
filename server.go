@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/xeenhl/authService/jwt"
+	"authService/jwt"
 
 	"github.com/gorilla/mux"
 	"github.com/urfave/negroni"
-	"github.com/xeenhl/authService/config"
-	"github.com/xeenhl/authService/handlers"
-	"github.com/xeenhl/authService/server"
-	"github.com/xeenhl/authService/storage"
+	"authService/config"
+	"authService/handlers"
+	"authService/server"
+	"authService/storage"
 )
 
 func main() {
