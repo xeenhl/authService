@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/xeenhl/spendlog/backend/authService/jwt"
+	"github.com/xeenhl/authService/jwt"
 
 	"github.com/gorilla/mux"
 	"github.com/urfave/negroni"
-	"github.com/xeenhl/spendlog/backend/authService/config"
-	"github.com/xeenhl/spendlog/backend/authService/handlers"
-	"github.com/xeenhl/spendlog/backend/authService/server"
-	"github.com/xeenhl/spendlog/backend/authService/storage"
+	"github.com/xeenhl/authService/config"
+	"github.com/xeenhl/authService/handlers"
+	"github.com/xeenhl/authService/server"
+	"github.com/xeenhl/authService/storage"
 )
 
 func main() {

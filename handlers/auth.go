@@ -11,8 +11,8 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 
-	"github.com/xeenhl/spendlog/backend/authService/model"
-	"github.com/xeenhl/spendlog/backend/authService/server"
+	"github.com/xeenhl/authService/model"
+	"github.com/xeenhl/authService/server"
 )
 
 var logger = log.New(os.Stdout, "[authenticaton] ", log.LstdFlags)

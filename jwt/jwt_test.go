@@ -4,9 +4,10 @@ import (
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/pem"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/xeenhl/spendlog/backend/authService/model"
 	"testing"
+
+	"github.com/dgrijalva/jwt-go"
+	"github.com/xeenhl/authService/model"
 )
 
 type TestKeyLoader struct{}

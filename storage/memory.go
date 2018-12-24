@@ -7,7 +7,7 @@ import (
 	"github.com/rs/xid"
 
 	"github.com/pkg/errors"
-	"github.com/xeenhl/spendlog/backend/authService/model"
+	"github.com/xeenhl/authService/model"
 )
 
 //Memory storage should be used for development and test purpose only

@@ -6,7 +6,7 @@ import (
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/pkg/errors"
-	"github.com/xeenhl/spendlog/backend/authService/model"
+	"github.com/xeenhl/authService/model"
 )
 
 type Tokenazer interface {

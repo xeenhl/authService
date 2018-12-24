@@ -14,15 +14,15 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/xeenhl/spendlog/backend/authService/server"
+	"github.com/xeenhl/authService/server"
 
-	"github.com/xeenhl/spendlog/backend/authService/model"
+	"github.com/xeenhl/authService/model"
 
 	jwt "github.com/dgrijalva/jwt-go"
-	"github.com/xeenhl/spendlog/backend/authService/storage"
+	"github.com/xeenhl/authService/storage"
 
 	"github.com/urfave/negroni"
-	"github.com/xeenhl/spendlog/backend/authService/handlers"
+	"github.com/xeenhl/authService/handlers"
 )
 
 type TestTokenizer struct {

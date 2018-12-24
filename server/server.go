@@ -6,9 +6,9 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/urfave/negroni"
-	"github.com/xeenhl/spendlog/backend/authService/config"
-	"github.com/xeenhl/spendlog/backend/authService/jwt"
-	"github.com/xeenhl/spendlog/backend/authService/storage"
+	"github.com/xeenhl/authService/config"
+	"github.com/xeenhl/authService/jwt"
+	"github.com/xeenhl/authService/storage"
 )
 
 type Server struct {

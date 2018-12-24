@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/xeenhl/spendlog/backend/authService/config"
+	"github.com/xeenhl/authService/config"
 )
 
 type PrivateKeyLoader interface {
