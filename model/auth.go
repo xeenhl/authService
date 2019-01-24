@@ -7,16 +7,17 @@ import (
 )
 
 type User struct {
-	Id          xid.ID      `json:"id"`
-	Credentials Credentilas `json:"credentials"`
-	Active      bool        `json:"active"`
-	Banned      bool        `json:"banned"`
+	Id          xid.ID       `json:"id,omitempty"`
+	Credentials *Credentilas `json:"credentials,omitempty"`
+	Active      bool         `json:"active"`
+	Banned      bool         `json:"banned"`
+	SSOData
 }
 
 func NewUser(c Credentilas) User {
 	return User{
 		Id:          xid.New(),
-		Credentials: c,
+		Credentials: &c,
 		Banned:      false,
 		Active:      true,
 	}
@@ -28,11 +29,8 @@ type Credentilas struct {
 }
 
 type SSOData struct {
-	UserId xid.ID  `json:"userId"`
-	Active bool    `json:"active"`
-	Banned bool    `json:"banned"`
-	Valid  bool    `json:"token_valid"`
-	Claims []Claim `json:"claims`
+	Valid  *bool   `json:"token_valid,omitempty"`
+	Claims []Claim `json:"claims,omitempty"`
 }
 
 type Claim struct {

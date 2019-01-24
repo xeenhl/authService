@@ -272,10 +272,14 @@ func TestSso(t *testing.T) {
 		{
 			description:  "Should return credentials for provided valid token",
 			requestBody:  testToken,
-			expestedBody: `{"userId":"bfra5o2cc8imh64se1s0","active":false,"banned":false,"token_valid":true,"Claims":[{"Key":"ExpiresAt","Value":15000},{"Key":"Issuer","Value":"test"},{"Key":"sub","Value":"bfra5o2cc8imh64se1s0"}]}`,
+			expestedBody: `{"id":"bfra5o2cc8imh64se1s0","active":false,"banned":false,"token_valid":true,"Claims":[{"Key":"ExpiresAt","Value":15000},{"Key":"Issuer","Value":"test"},{"Key":"sub","Value":"bfra5o2cc8imh64se1s0"}]}`,
 			expectedCode: 200,
 			testIniter: func(s *storage.MemoryStorage) {
-				s.Users["user"] = model.User{Id: userId}
+				s.Users["user"] = model.User{
+												Id: userId,
+												Active: false,
+												Banned: false,
+											}
 				s.Sessions[testToken] = struct{}{}
 			},
 		},

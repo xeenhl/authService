@@ -121,6 +121,8 @@ func Signin(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 	}
 
 	logger.Printf("User %v", u)
+	u.Claims = nil
+	u.Valid = nil
 	j, err := json.Marshal(u)
 
 	if err != nil {
@@ -163,22 +165,18 @@ func Sso(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 		return
 	}
 
-	t := new(model.SSOData)
-	t.Valid = pt.Valid
-
 	u, claims := getUserForToken(pt)
-	t.Claims = claims
 
 	if u == nil {
 		prepareErrorResponse(rw, model.AuthError{"Bad Request", "User not found"}, http.StatusBadRequest)
 		return
 	}
 
-	t.Active = u.Active
-	t.Banned = u.Banned
-	t.UserId = u.Id
+	u.Claims = claims
+	u.Valid = &pt.Valid
+	u.Credentials = nil
 
-	resp, err := json.Marshal(t)
+	resp, err := json.Marshal(u)
 
 	if err != nil {
 		prepareErrorResponse(rw, model.AuthError{"Bad Request", err.Error()}, http.StatusBadRequest)
@@ -245,6 +243,7 @@ func prepareErrorResponse(rw http.ResponseWriter, err model.AuthError, status in
 
 func getUserForToken(pt *jwt.Token) (*model.User, []model.Claim) {
 	var u *model.User
+	var err error
 	cl := []model.Claim{}
 	if claims, ok := pt.Claims.(jwt.MapClaims); ok && pt.Valid {
 		logger.Println(claims)
@@ -252,11 +251,16 @@ func getUserForToken(pt *jwt.Token) (*model.User, []model.Claim) {
 			logger.Printf("Parcing [%v, %v]", key, value)
 			if key == "sub" {
 				if id, ok := value.(string); ok {
-					u, _ = server.RunningServer.UserStore.GetUserById(string(id))
+					u, err = server.RunningServer.UserStore.GetUserById(string(id))
 				}
 			}
 			cl = append(cl, model.Claim{Key: key, Value: value})
 		}
 	}
+
+	if err != nil {
+		return nil, cl
+	}
+
 	return u, cl
 }

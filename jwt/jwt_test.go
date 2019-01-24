@@ -6,8 +6,10 @@ import (
 	"encoding/pem"
 	"testing"
 
-	"github.com/dgrijalva/jwt-go"
 	"authService/model"
+
+	"github.com/dgrijalva/jwt-go"
+	"github.com/rs/xid"
 )
 
 type TestKeyLoader struct{}
@@ -79,11 +81,12 @@ func TestNewTokenizer(t *testing.T) {
 
 func TestJwt_GenerateTokenShouldGenerateValidToken(t *testing.T) {
 	k := TestKeyLoader{}
+	guid := xid.New()
 	tok := &Jwt{
 		keyLoader: k,
 	}
 
-	u := &model.User{Id: 101.0}
+	u := &model.User{Id: guid}
 
 	token, err := tok.GenerateToken(u)
 
@@ -97,7 +100,7 @@ func TestJwt_GenerateTokenShouldGenerateValidToken(t *testing.T) {
 
 	if claims, ok := pToken.Claims.(jwt.MapClaims); ok {
 
-		if id, ok := claims["sub"].(float64); !ok || id != 101.0 {
+		if id, isXidID := claims["sub"].(string); !isXidID || id != guid.String() {
 			t.Errorf("User id mast be 'sub' claim and with expected value: %v", id)
 		}
 
@@ -109,11 +112,12 @@ func TestJwt_GenerateTokenShouldGenerateValidToken(t *testing.T) {
 func TestJwt_ParceAndVerifyToken(t *testing.T) {
 
 	k := TestKeyLoader{}
+	guid := xid.New()
 	tok := &Jwt{
 		keyLoader: k,
 	}
 
-	u := &model.User{Id: 101.0}
+	u := &model.User{Id: guid}
 
 	token, _ := tok.GenerateToken(u)
 
@@ -125,7 +129,7 @@ func TestJwt_ParceAndVerifyToken(t *testing.T) {
 
 	if claims, ok := pToken.Claims.(jwt.MapClaims); ok {
 
-		if id, ok := claims["sub"].(float64); !ok || id != 101.0 {
+		if id, isXidID := claims["sub"].(string); !isXidID || id != guid.String() {
 			t.Errorf("User id mast be 'sub' claim and with expected value: %v", id)
 		}
 
